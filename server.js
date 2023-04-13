@@ -9,6 +9,7 @@ dotenv.config()
 
 //middleware
 const pageNotFound = require('./middleware/pageNotFound')
+const errorHandler = require('./middleware/errorHandler')
 
 // route
 
@@ -30,6 +31,7 @@ app.use('/user',authRoutes)
 
 app.use(pageNotFound)
 
+app.use(errorHandler)
 const port = process.env.PORT || 5000
 
 const start = async ()=>{
