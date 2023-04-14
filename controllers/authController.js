@@ -13,7 +13,7 @@ exports.register = async (req,res,next)=>{
 
     const emailExist = await User.findOne({email})
     if(emailExist){
-        throw new BadRequestError('Email already exist, try login ?')
+        throw new BadRequestError('Email already in use')
     }
    const user =   await User.create({username, email, password})
    const token = user.createJWT()

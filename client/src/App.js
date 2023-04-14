@@ -14,7 +14,7 @@ function App() {
       errorElement: <ErrorHandler/>,
       children:[
         {
-          path: 'home',
+          path: '',
           element: <Home/>
         },
         {
@@ -25,11 +25,11 @@ function App() {
           path: 'register',
           element: <Register/>
         },
-        {
-          path: 'landing',
-          element: <Landing/>
-        }
       ]
+    },
+    {
+      path: '/landing',
+      element: <Landing/>
     }
   ])
   return (

@@ -1,0 +1,17 @@
+.formWrapper{
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    border-top: 5px solid #2CB1BC;
+}
+.error{
+    color: red;
+    margin: 3px;
+    /* font-weight: bold; */
+}
+
+@media only screen and (max-width: 600px) {
+    .formWrapper{
+        width: 80%;
+    }
+}
