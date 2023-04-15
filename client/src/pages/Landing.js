@@ -1,34 +1,38 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Link } from "react-router-dom";
-import img from '../assests/images/mainImage.svg'
+import Card from 'react-bootstrap/Card'
 import classes from '../styles/Landing.module.css'
-import { Logo } from '../components';
 
+
+//page to display when user is logged in
 const Landing = () => {
-  return (
-    <Container>
-      <nav>
-        <Logo/>
-      </nav>
-      <main className={classes.mainWrapper}>
-      <Row>
-        <Col className='col-md-6 '>
-          <h1>Cromwell <span>user</span> app</h1>
-          <p>I'm baby hell of dreamcatcher meh irony pabst hashtag. Hell of vibecession VHS la croix. Fixie enamel pin tonx venmo bitters celiac vegan taiyaki master cleanse vaporware.</p>
-          <Link to='/register' className='btn btn-hero'>
-              Login/Register
-            </Link>
-        </Col>
-        <Col className=' d-none d-md-block col-md-6'>
-          <img src={img}/>
-        </Col>
-      </Row>
-      </main>
+  const user = useSelector((state)=>state.userState.user)
+  console.log(user)
+  const navigate = useNavigate()
 
-    </Container>
+  // useEffect(()=>{
+  //   if(!user){
+  //     navigate('/')
+  //   }
+  // },[user,navigate])
+  return (
+   <Container>
+      <Row>
+        <Col className={`col col-md-6 card mb-4  mt-3   ${classes.top}`}>
+            <Card.Body >
+            <Card.Text>
+             Hello {user.username}, welcome to your awesome home page!
+            </Card.Text>
+            <hr/>
+            <span>Registered email: {user.email}</span>
+            </Card.Body>
+          </Col>
+      </Row>
+   </Container>
   )
 }
 

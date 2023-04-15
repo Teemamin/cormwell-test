@@ -43,15 +43,21 @@ exports.login = async (req,res,next)=>{
     res.status(StatusCodes.OK).json(user)
 }
 
-exports.getUser = async (req,res,next)=>{
-    const userId = req.params.userId
+
+exports.getCurrentUser = async (req,res,next)=>{
+    const userId = req.user.userId
     if (!mongoose.Types.ObjectId.isValid(userId)){
         throw new BadRequestError(`No user with id :${userId} found`)
     }
-    const user = await User.findById({_id: userId})
-    if(!user){
-        throw new UnauthenticatedError('Invalid Credentials, Sorry we cannot find the provided user in our database')
-    }
+    const user = await User.findOne({_id: userId})
 
     res.status(StatusCodes.OK).json(user)
 }
+
+exports.logout = async (req, res) => {
+    res.cookie('token', 'logout', {
+      httpOnly: true,
+      expires: new Date(Date.now()),
+    });
+    res.status(StatusCodes.OK).json({ msg: 'Logout success!' });
+  };

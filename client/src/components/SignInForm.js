@@ -5,18 +5,19 @@ import Button from 'react-bootstrap/Button';
 import {  useNavigate } from 'react-router-dom';
 import classes from '../styles/AuthForm.module.css'
 import Alert from 'react-bootstrap/Alert';
+import { useSelector, useDispatch } from 'react-redux';
+import { userActions } from '../store';
 
-
-const SignUpForm = () => {
+const SignInForm = () => {
     const navigate = useNavigate();
+    const user = useSelector((state)=>state.userState.user)
+    const dispatch = useDispatch()
     const [userData,setUserData] = useState({
-        username: '',
         email: '',
         password: '',
         confirmPassword: ''
     })
     const [error, setError] = useState({
-        username: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -44,12 +45,6 @@ const SignUpForm = () => {
           const stateObj = { ...prev, [name]: "" };
      
           switch (name) {
-            case "username":
-              if (!value) {
-                stateObj[name] = "Please enter Username.";
-              }
-              break;
-
             case "email":
             if (!value) {
                 stateObj[name] = "Please enter Email.";
@@ -94,8 +89,9 @@ const SignUpForm = () => {
             return
         }
         try {
-            await axiosClient.post('/register', userData)
-            navigate('/login')
+            const {data} = await axiosClient.post('/login', userData)
+            dispatch(userActions.setCurrentUser(data))
+            navigate('/landing')
 
         } catch (error) {
             setApiError(error.response.data.msg)
@@ -113,13 +109,6 @@ const SignUpForm = () => {
                  onChange={handleChange} onBlur={validateUserInput} required
                 />
                 {error.email && <span className={classes.error}>{error.email}</span>}
-            </Form.Group>
-            <Form.Group className="" controlId="formBasicText">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="text" name='username' placeholder="username" value={userData.username}
-             onChange={handleChange}onBlur={validateUserInput} required
-             />
-            {error.username && <span className={classes.error}>{error.username}</span>}
             </Form.Group>
             <Form.Group className="" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
@@ -144,4 +133,4 @@ const SignUpForm = () => {
   )
 }
 
-export default SignUpForm
+export default SignInForm

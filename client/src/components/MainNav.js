@@ -1,11 +1,20 @@
+import axiosClient from '../api/axiosDefault';
 import {NavLink} from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import classes from '../styles/MainNav.module.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { userActions } from '../store';
 
 const MainNav = () => {
+    const user = useSelector((state)=>state.userState.user)
+    const dispatch = useDispatch()
 
+    const handleLogout = async ()=>{
+            await axiosClient.get('/logout')
+            dispatch(userActions.logoutUser()) 
+    }
 
   return (
     <>
@@ -19,16 +28,25 @@ const MainNav = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" className={classes['navbar-toggler']}/>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <NavLink to={'/'} className={({ isActive }) =>
-                isActive ? `${classes.active} nav-link` : "nav-link"
-              }>
-                    Home
+                {user &&
+                    <NavLink to={'/'} className={({ isActive }) =>
+                    isActive ? `${classes.active} nav-link` : "nav-link"
+                    }>
+                        Home
+                    </NavLink>
+                }
+                {user ?
+                    <div>
+                        <button  className= {`${classes.logoutBtn} nav-link`} onClick={handleLogout}>
+                        Logout
+                        </button> 
+                    </div>
+                    : <NavLink to={'login'} className={({ isActive }) =>
+                    isActive ? `${classes.active} nav-link` : "nav-link"
+                    }>
+                    Login
                 </NavLink>
-               <NavLink to={'login'} className={({ isActive }) =>
-                  isActive ? `${classes.active} nav-link` : "nav-link"
-                }>
-                      Login
-                  </NavLink>
+                }
                 
               </Nav>
             </Navbar.Collapse>
