@@ -1,14 +1,15 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { MainNav } from '../components'
+import Container from 'react-bootstrap/Container';
 
 const SharedLayout = () => {
   return (
     <>
         <MainNav/>
-        <main>
+        <Container>
         <Outlet/>
-        </main>
+        </Container>
         
     </>
   )

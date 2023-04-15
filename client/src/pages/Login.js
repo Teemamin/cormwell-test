@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import { SignInForm } from '../components'
+import { AuthForm } from '../components'
 import { useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
 
@@ -15,7 +15,7 @@ const Login = () => {
 
   return (
     <>
-      <SignInForm/>
+      <AuthForm/>
     </>
   )
 }

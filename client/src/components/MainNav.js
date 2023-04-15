@@ -29,10 +29,10 @@ const MainNav = () => {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 {user &&
-                    <NavLink to={'/'} className={({ isActive }) =>
+                    <NavLink to={'/landing'} className={({ isActive }) =>
                     isActive ? `${classes.active} nav-link` : "nav-link"
                     }>
-                        Home
+                        Profile
                     </NavLink>
                 }
                 {user ?
@@ -45,6 +45,14 @@ const MainNav = () => {
                     isActive ? `${classes.active} nav-link` : "nav-link"
                     }>
                     Login
+                </NavLink>
+                }
+                    {!user &&
+                    
+                     <NavLink to={'register'} className={({ isActive }) =>
+                    isActive ? `${classes.active} nav-link` : "nav-link"
+                    }>
+                    Register
                 </NavLink>
                 }
                 

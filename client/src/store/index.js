@@ -2,7 +2,8 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-    user: null
+    user: null,
+    userLoading: true
 }
 
 const userSlice = createSlice({
@@ -11,9 +12,14 @@ const userSlice = createSlice({
     reducers: {
         setCurrentUser(state,action){
             state.user = action.payload
+            state.userLoading = false
         },
         logoutUser(state){
             state.user = null
+            state.userLoading = false
+        },
+        updateUserLoading(state,action){
+            state.userLoading = action.payload
         }
     }
 

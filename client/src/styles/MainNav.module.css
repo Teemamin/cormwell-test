@@ -1,52 +1,44 @@
-/* .header {
-    max-width: 60rem;
-    margin: auto;
-    padding: 2rem;
-    display: flex;
-    justify-content: space-between;
-  }
-  
+
+/*   
   .list {
     display: flex;
     gap: 1rem;
     padding: 20px;
-  }
+  } */
   
   .list a {
     text-decoration: none;
-    color: #ffffff;
     font-size: 1.5em;
   }
   .navbar-brand{
     text-decoration: none;
-    color: #ffffff;
   }
   .navbar-brand:focus, .navbar-brand:hover {
-    color: rgb(235,0,0)
+    color: #2CB1BC
 }
 .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link{
-    color: rgb(235,0,0);
+    color: #2CB1BC;
 }
   
   .list a:hover,
   .list a.active {
-    color: rgb(235,0,0);
+    color: #4e7cdc;
   }
 
 
-  .navbar-toggler{
-    color: white;
+  /* .navbar-toggler{
     background-color: whitesmoke;
-  }
+  } */
 
  
 
   .logoutBtn{
     font-size: 1.5em;
     background: transparent;
+    color:#486581;
     border: none;
-    color: white;
 }
 .logoutBtn:hover{
-  color: rgb(235,0,0);
-} */
+  color: #2CB1BC;
+}
+

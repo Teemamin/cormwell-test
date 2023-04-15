@@ -58,6 +58,7 @@ function App() {
 
   const getCurrentUser = async ()=>{
     try {
+      dispatch(userActions.updateUserLoading(true))
      const {data} = await axiosClient.get('/get-current-user')
      dispatch(userActions.setCurrentUser(data))
      
