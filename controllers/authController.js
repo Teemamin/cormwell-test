@@ -7,10 +7,11 @@ const mongoose = require('mongoose')
 
 exports.register = async (req,res,next)=>{
     const {username, email, password} = req.body
+
     if(!username || !email || !password){
         throw new BadRequestError('Please Provide all values')
     }
-
+    //sanitize mongo sanitize
     const emailExist = await User.findOne({email})
     if(emailExist){
         throw new BadRequestError('Email already in use')
@@ -38,7 +39,7 @@ exports.login = async (req,res,next)=>{
     }
     const token = user.createJWT()
     attachCookie({res,token})
-
+//consider abstracting password match to utill func for testing
     user.password = undefined
     res.status(StatusCodes.OK).json(user)
 }

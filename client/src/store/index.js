@@ -26,6 +26,7 @@ const userSlice = createSlice({
 })
 
 export const userActions = userSlice.actions
+export const userReducer = userSlice.reducer
 
 const store = configureStore({
   reducer: {userState: userSlice.reducer},

@@ -94,9 +94,11 @@ const AuthForm = ({register,login}) => {
 
     const handleSubmit = async (event)=>{
         event.preventDefault()
+
         if(!Object.keys(error).length === 0){
             return
         }
+
         const url = register ? '/register' : '/login'
         try {
             const {data} = await axiosClient.post(url, userData)
@@ -114,7 +116,7 @@ const AuthForm = ({register,login}) => {
     }
   return (
     <>
-        <Form className={classes.formWrapper} onSubmit={handleSubmit}>
+        <Form data-testid="form" className={classes.formWrapper} onSubmit={handleSubmit}>
             {apiError &&  <Alert variant="warning">
                 {apiError}
               </Alert>}
@@ -150,7 +152,7 @@ const AuthForm = ({register,login}) => {
             </Form.Group>
            
             <Button variant="primary" type="submit">
-                Submit
+             {register ? 'Register' : 'Login'}
             </Button>
         </Form>
     </>
