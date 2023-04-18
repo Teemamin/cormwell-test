@@ -6,6 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import classes from '../styles/MainNav.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../store';
+import Logo from './Logo';
 
 const MainNav = () => {
     const user = useSelector((state)=>state.userState.user)
@@ -23,11 +24,16 @@ const MainNav = () => {
             <NavLink to={'/'} className={({ isActive }) =>
                 isActive ? `${classes.active} nav-link` : "nav-link"
               }>
-            <Navbar.Brand className={classes['navbar-brand']}>CM User App</Navbar.Brand>
+            <Navbar.Brand className={classes['navbar-brand']}><Logo/></Navbar.Brand>
             </NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" className={classes['navbar-toggler']}/>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
+              <NavLink to={'/'} className={({ isActive }) =>
+                    isActive ? `${classes.active} nav-link` : "nav-link"
+                    }>
+                    Home
+                </NavLink>
                 {user &&
                     <NavLink to={'/landing'} className={({ isActive }) =>
                     isActive ? `${classes.active} nav-link` : "nav-link"

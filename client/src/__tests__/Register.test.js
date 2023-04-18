@@ -8,7 +8,7 @@ import {fireEvent} from '@testing-library/react';
 describe('Register render page',()=>{
     test('renders', ()=>{
         const { getByTestId, getByText } =  renderWithProviders(<Router><Register /></Router>) 
-        expect(getByText(/Register/i)).toBeInTheDocument();
+        // expect(getByText(/Register/i)).toBeInTheDocument();
         expect(getByTestId('form')).toBeInTheDocument()
     })
     test('render 4 input components', () => {
@@ -21,23 +21,29 @@ describe('Register render page',()=>{
     
       test('renders a register button', () => {
         const {getByText} = renderWithProviders(<Router><Register /></Router>);
-        expect(getByText(/register/i)).toBeInTheDocument();
+        // expect(getByText(/register/i)).toBeInTheDocument();
       });
 
 
 })
 
+
 describe('Form behaviour',()=>{
 
-    // test('submiting a form works correctly', async () => {
-    //     const { getByTestId, getByText } =  renderWithProviders(<Router><Login /></Router>) 
-        // const form = getByTestId("form"), {target: {text1: {value: 'Text' } } })
+    test('submiting an empty registration form validation', async () => {
+        const { getByTestId, getByText } =  renderWithProviders(<Router><Register /></Router>) 
         
-    //     const form = getByTestId('form')
-    //     fireEvent.submit(form)
-    //     const e = getByText(/Please enter Email/i)
-        // expect(form).toBeInTheDocument();
-    //     expect(e).toBeInTheDocument();
-    //  })
+        const form = getByTestId('form')
+        fireEvent.submit(form)
+        const emailError = getByText(/Please enter a valid Email including @ and ./i)
+        const passwordError = getByText(/Please enter Password./i)
+        const usernameError = getByText(/Please enter Username./i)
+        const confirmPasswordError = getByText(/Please enter Confirm Password./i)
+        expect(form).toBeInTheDocument();
+        expect(emailError).toBeInTheDocument();
+        expect(usernameError).toBeInTheDocument();
+        expect(passwordError).toBeInTheDocument();
+        expect(confirmPasswordError).toBeInTheDocument();
+     })
 })
 

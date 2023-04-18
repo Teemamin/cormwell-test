@@ -1,5 +1,4 @@
 import React from 'react'
-import { AuthForm } from '../components'
 import { RegistrationForm } from '../components/RegistrationForm'
 
 

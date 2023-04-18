@@ -1,8 +1,7 @@
 import { renderWithProviders } from "../utils/test-utils";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Landing } from "../pages";
-import { Login } from "../pages";
-import {fireEvent} from '@testing-library/react';
+
 
 test("renders landing page to logged in user", async () => {
     // arrange 

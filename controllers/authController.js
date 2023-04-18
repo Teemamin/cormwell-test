@@ -11,14 +11,12 @@ exports.register = async (req,res,next)=>{
     if(!username || !email || !password){
         throw new BadRequestError('Please Provide all values')
     }
-    //sanitize mongo sanitize
+    //could potentially sanitize with mongo sanitize
     const emailExist = await User.findOne({email})
     if(emailExist){
         throw new BadRequestError('Email already in use')
     }
    const user =   await User.create({username, email, password})
-   const token = user.createJWT()
-   attachCookie({res,token})
 
    user.password = undefined
     res.status(StatusCodes.CREATED).json(user)

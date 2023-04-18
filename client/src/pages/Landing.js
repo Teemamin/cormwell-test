@@ -1,4 +1,3 @@
-import React,{useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -17,10 +16,10 @@ const Landing = () => {
         <Col className={`col col-md-6 card mb-4  mt-3   ${classes.top}`}>
             <Card.Body >
             <Card.Text>
-             Hello <span data-testid="username">{user.username}</span> , welcome to your awesome home page!
+             Hello <span data-testid="username" className={classes.userDetail}>{user.username}</span> , welcome to your awesome home page!
             </Card.Text>
             <hr/>
-            <p>Registered email: <span data-testid="email">{user.email}</span></p>
+            <p>Registered email: <span data-testid="email" className={classes.userDetail}>{user.email}</span></p>
             </Card.Body>
           </Col>
       </Row>

@@ -1,7 +1,8 @@
 import React,{useEffect} from 'react'
-import { AuthForm } from '../components'
 import { useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
+import { LoginForm } from '../components/LoginForm'
+
 
 const Login = () => {
   const user = useSelector((state)=>state.userState.user)
@@ -15,7 +16,7 @@ const Login = () => {
 
   return (
     <>
-      <AuthForm/>
+      <LoginForm/>
     </>
   )
 }

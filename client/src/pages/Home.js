@@ -3,25 +3,18 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import img from '../assests/images/mainImage.svg';
-import { Logo } from '../components';
+import classes from '../styles/Home.module.css'
 
 const Home = () => {
   return (
-    <Container>
-      <nav>
-        <Logo/>
-      </nav>
-   
+    <Container className={classes.homecontainer}>
       <Row>
         <Col className='col-md-6 '>
-          <h1>Cromwell <span>user</span> app</h1>
-          <p>I'm baby hell of dreamcatcher meh irony pabst hashtag. Hell of vibecession VHS la croix. Fixie enamel pin tonx venmo bitters celiac vegan taiyaki master cleanse vaporware.</p>
-          {/* <Link to='/register' className='btn btn-hero'>
-              Register
-            </Link> */}
+          <h1>Cromwell <span className={classes.spanText}>user</span> app</h1>
+          <p>Hi there, welcome to our user registration app, login to resume enjoying your app perks! Don't have an account with us yet? click the register button above and unlock a world of possibilities!</p>
         </Col>
         <Col className=' d-none d-md-block col-md-6'>
-          <img src={img} alt='logo'/>
+          <img src={img} alt='logo' className={classes.mainImg}/>
         </Col>
       </Row>
      

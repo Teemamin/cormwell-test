@@ -3,15 +3,23 @@
     margin: auto;
     padding: 10px;
     border-top: 5px solid #2CB1BC;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 .error{
     color: red;
     margin: 3px;
-    /* font-weight: bold; */
 }
 
 @media only screen and (max-width: 600px) {
     .formWrapper{
         width: 80%;
+        position: static;
+        -webkit-transform: none !important;
+        transform: none !important;
+
     }
 }

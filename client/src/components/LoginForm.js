@@ -2,8 +2,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import classes from '../styles/AuthForm.module.css'
 import Alert from 'react-bootstrap/Alert';
+import useLogin from '../hooks/useLogin';
 
-import useRegistration from '../hooks/useRegistration';
 
 const initialState = {
     email: {
@@ -22,21 +22,11 @@ const initialState = {
         key: 'password', //Key is the unique identifier to compare password against.
         validate: true
     },
-    username: {
-        value: '',
-        type: 'username',
-        validate: true
-    },
-    description: {
-        value: '',
-        type: 'description',
-        validate: false,
-    }
 }
 
 
-export const RegistrationForm = (props) => {
-    const {onSubmit, formData, errors, validateInput, onChange, apiError } = useRegistration(initialState);
+export const LoginForm = (props) => {
+    const {onSubmit, formData, errors, validateInput, onChange, apiError } = useLogin(initialState);
 
     const validate = event => {
         validateInput(event, formData)
@@ -44,7 +34,7 @@ export const RegistrationForm = (props) => {
 
     return (
         <Form data-testid="form" className={classes.formWrapper} onSubmit={onSubmit}>
-            <h3 className='text-center'>Register</h3>
+            <h3 className='text-center'>Login</h3>
              {apiError &&  <Alert variant="warning">
                 {apiError}
               </Alert>}
@@ -53,13 +43,6 @@ export const RegistrationForm = (props) => {
             <Form.Control type="email"  name={formData?.email?.type} placeholder="Enter email" value={formData?.email?.value}
              onChange={onChange} />
             {errors?.email && <span className={classes.error}>{errors?.email}</span>}
-        </Form.Group>
-            <Form.Group className="" controlId="formBasicText">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="text" name={formData?.username?.type} placeholder="username" value={formData?.username?.value}
-            onChange={onChange}onBlur={validate}
-            />
-            {errors?.username && <span className={classes.error}>{errors?.username}</span>}
         </Form.Group>
 
         <Form.Group className="" controlId="formBasicPassword">
@@ -78,7 +61,7 @@ export const RegistrationForm = (props) => {
             </Form.Group>
            
         <Button variant="primary" type="submit">
-            Register
+            Login
         </Button>
     </Form>
     )

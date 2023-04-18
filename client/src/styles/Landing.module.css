@@ -1,3 +1,7 @@
 .top{
     margin: 0 auto;
 }
+.userDetail{
+    font-weight: bold;
+    text-decoration: dashed;
+}

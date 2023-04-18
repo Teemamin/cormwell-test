@@ -2,17 +2,21 @@ import { useState, useCallback } from "react";
 import axiosClient from '../api/axiosDefault';
 import {  useNavigate } from 'react-router-dom';
 import useFormValidation from "./useFormValidation";
+import { useDispatch } from 'react-redux';
+import { userActions } from '../store';
 
 
-const useRegistration = (formData) => {
+const useLogin = (formData) => {
     const [regData, setRegData] = useState(formData);
     const { validateForm, errors, validateInput } = useFormValidation()
     const [apiError, setApiError] = useState('')
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const onChange = useCallback(event => {
         const { name, value } = event.target;
         const data = regData[name];
+
         if(!data) {
             return
         }
@@ -32,25 +36,22 @@ const useRegistration = (formData) => {
         
         const isValidForm = validateForm(regData)
 
-        console.log('isValidForm --->', isValidForm)
-
         if(!isValidForm) {
             return;
         }
-
         const userData = {
-            username: regData.username.value,
             email: regData.email.value,
             password: regData.password.value,
           }
         try {
-            await axiosClient.post('/register', userData)
-            navigate('/login')
+            const {data} = await axiosClient.post('/login', userData)
+            dispatch(userActions.setCurrentUser(data))
+            navigate('/landing')
 
         } catch (error) {
             setApiError(error.response.data.msg)
         }
-    }, [regData,validateForm,navigate]) //removed errors as array dependency
+    }, [regData,dispatch,navigate,validateForm]) //added dispatch,navigate,validateForm and removed errors as depndncy
 
 
     return { 
@@ -63,4 +64,4 @@ const useRegistration = (formData) => {
     }
 }
 
-export default useRegistration
+export default useLogin

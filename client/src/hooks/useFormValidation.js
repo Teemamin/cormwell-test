@@ -93,20 +93,23 @@ const useFormValidation = () => {
             })
         //    console.log(isValid)
         //    console.log('errors in val..',errors.email)
+
+            return isValid;
         }
+
+        return true;
     }, [])
     
     const validateInput = useCallback((event, formData) => {
         let { name: key } = event.target;
 
         doValidationStep(key, formData)
-    }, [])
+    }, [doValidationStep])
 
     const validateForm = useCallback((formData) => {
-        Object.keys(formData).map(key => {         
-            doValidationStep(key, formData)
-        })
-    }, [])
+        const formErrors = Object.keys(formData).map(key => doValidationStep(key, formData))
+        return formErrors.every(val => val)
+    }, [doValidationStep])
 
     return {
         errors,

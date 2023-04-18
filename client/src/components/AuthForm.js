@@ -94,7 +94,7 @@ const AuthForm = ({register,login}) => {
 
     const handleSubmit = async (event)=>{
         event.preventDefault()
-
+      
         if(!Object.keys(error).length === 0){
             return
         }
