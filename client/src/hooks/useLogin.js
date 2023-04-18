@@ -51,7 +51,7 @@ const useLogin = (formData) => {
         } catch (error) {
             setApiError(error.response.data.msg)
         }
-    }, [regData,dispatch,navigate,validateForm]) //added dispatch,navigate,validateForm and removed errors as depndncy
+    }, [regData,dispatch,navigate,validateForm])
 
 
     return { 

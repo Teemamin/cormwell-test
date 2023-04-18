@@ -71,7 +71,7 @@ const useFormValidation = () => {
             let isValid = true;
             let message = '';
             if(key === 'confirmPassword') {
-                const passwordData = formData[data.key];//this will retrive the key with the name password and lets us collect the passowrd data from the form
+                const passwordData = formData[data.key];
                 const { isError, message: messageError } = validators[key](data.value, passwordData.value)
                 isValid = !isError;
                 message = messageError;
@@ -91,8 +91,6 @@ const useFormValidation = () => {
 
                 return stateObj;
             })
-        //    console.log(isValid)
-        //    console.log('errors in val..',errors.email)
 
             return isValid;
         }

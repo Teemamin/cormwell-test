@@ -50,7 +50,7 @@ const useRegistration = (formData) => {
         } catch (error) {
             setApiError(error.response.data.msg)
         }
-    }, [regData,validateForm,navigate]) //removed errors as array dependency
+    }, [regData,validateForm,navigate])
 
 
     return { 
