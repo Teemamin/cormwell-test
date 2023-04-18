@@ -1,7 +1,6 @@
 const {StatusCodes} = require('http-status-codes')
 
 const errorHandler = (error,req,res,next)=>{
-    console.log(error)
     const defaultError = {
         statusCode:  error.statusCode || 500,
         msg: error.message || 'Something went wrong try again later'
